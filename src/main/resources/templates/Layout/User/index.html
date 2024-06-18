@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="Fragment/lib.html::lib('User')">
+    <meta charset="UTF-8">
+    <title>User Management</title>
+
+</head>
+<body>
+<header th:replace="Fragment/lib.html::nav"></header>
+<div class="container mt-5">
+    <h2 class="mb-4">User Management</h2>
+    <table class="table table-striped table-hover">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">STT</th>
+            <th scope="col">ID</th>
+            <th scope="col">UserName</th>
+            <th scope="col">Password</th>
+            <th scope="col">Email</th>
+            <th scope="col">FirstName</th>
+            <th scope="col">LastName</th>
+            <th scope="col">DateOfBirth</th>
+            <th scope="col">Role</th>
+            <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user, userStat : ${users}">
+            <th scope="row" th:text="${userStat.index+1}"></th>
+            <td th:text="${user.id}"></td>
+            <td th:text="${user.username}"></td>
+            <td th:text="${user.password}"></td>
+            <td th:text="${user.email}"></td>
+            <td th:text="${user.firstName}"></td>
+            <td th:text="${user.lastName}"></td>
+            <td th:text="${user.birthDay}"></td>
+            <td th:text="${user.role.getRole_name()}"></td>
+            <td>
+                <a th:href="'/users/edit/'+${user.id}" class="btn btn-sm btn-warning">Edit</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <button class="btn btn-primary" onclick="location.href='/users/new'">Create</button>
+</div>
+</body>
+</html>
